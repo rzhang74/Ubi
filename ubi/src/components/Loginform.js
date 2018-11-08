@@ -28,8 +28,8 @@ class Loginform extends Component {
 
   validate = (data) => {
     const errors = {};
-    if(!Validator.isEmail(data.email)) errors.email = "Invalid email";
-    if(!data.password) errors.password = "Can't be blank";
+    if(!Validator.isEmail(data.email)) errors.email = "Invalid email, qwq.";
+    if(!data.password) errors.password = "Didn't you type your password, meow?";
     return errors;
   };
 
@@ -38,18 +38,26 @@ class Loginform extends Component {
     const { errors } = this.state;
 
     return (
-      <Form onSubmit={this.onSubmit}>
-        <Form.Field error={!!errors.email}>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="example@example.com" value={data.email} onChange={this.onChange}></input>
-          {errors.email && <InlineError text={errors.email}/>}
-        </Form.Field>
-        <Form.Field error={!!errors.password}>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Make it secure :)" value={data.password} onChange={this.onChange}></input>
-          {errors.password && <InlineError text={errors.password}/>}
-        </Form.Field>
-        <Button primary>Login</Button>
+      <Form class="ui large form" onSubmit={this.onSubmit}>
+        <div class="ui stacked segment">
+          <Form.Field error={!!errors.email}>
+            <label htmlFor="email">Email</label>
+            <div class="ui left icon input">
+              <i class="envelope icon"></i>
+              <input type="email" id="email" name="email" placeholder="example@example.com" value={data.email} onChange={this.onChange}></input>
+            </div>
+            {errors.email && <InlineError text={errors.email}/>}
+          </Form.Field>
+          <Form.Field error={!!errors.password}>
+            <label htmlFor="password">Password</label>
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" id="password" name="password" placeholder="Make it secure :)" value={data.password} onChange={this.onChange}></input>
+            </div>
+            {errors.password && <InlineError text={errors.password}/>}
+          </Form.Field>
+          <Button primary>Login</Button>
+        </div>
       </Form>
     )
   }
