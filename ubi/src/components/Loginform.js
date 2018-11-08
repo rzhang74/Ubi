@@ -21,6 +21,9 @@ class Loginform extends Component {
   onSubmit = () => {
     const errors = this.validate(this.state.data);
     this.setState({errors})
+    if(Object.keys(errors).length === 0){
+      this.props.submit(this.state.data);
+    }
   };
 
   validate = (data) => {
@@ -36,11 +39,12 @@ class Loginform extends Component {
 
     return (
       <Form onSubmit={this.onSubmit}>
-        <Form.Field>
+        <Form.Field error={!!errors.email}>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" placeholder="example@example.com" value={data.email} onChange={this.onChange}></input>
           {errors.email && <InlineError text={errors.email}/>}
-
+        </Form.Field>
+        <Form.Field error={!!errors.password}>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Make it secure :)" value={data.password} onChange={this.onChange}></input>
           {errors.password && <InlineError text={errors.password}/>}
