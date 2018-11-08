@@ -70,7 +70,9 @@ class SignUpform extends Component {
                 {errors.password && <InlineError text={errors.password}/>}
               </Form.Field>
               
-              <Button primary>Sign Up</Button>
+              {/* <Button primary>Sign Up</Button> */}
+              <br></br>
+              <button class="fluid medium ui primary button">Sign up</button>
             </div>
           </Form>
         

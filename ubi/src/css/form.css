@@ -1,4 +1,4 @@
-body {
+body{
   background-color: #DADADA;
 }
 body > .grid {
@@ -15,6 +15,6 @@ label{
   float: left;
 }
 
-InlineError{
-  float: left;
+.buttonContainer{
+  height: 20px;
 }

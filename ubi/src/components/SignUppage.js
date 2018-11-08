@@ -5,6 +5,9 @@ import SignUpform from './SignUpform';
 import '../css/form.css';
 
 class SignUppage extends Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = "#DADADA";
+  }
   submit = data => {
     // console.log(data);
     this.props.signup(data).then(() => this.props.history.push("/"));
@@ -12,7 +15,7 @@ class SignUppage extends Component {
 
   render() {
     return (
-      <div class="ui middle aligned center aligned grid">
+      <div class="ui middle aligned center aligned grid" id="auth">
         <div class="column">
           <h1>Sign Up</h1>
           <SignUpform submit={this.submit}></SignUpform>

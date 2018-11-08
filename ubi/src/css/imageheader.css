@@ -1,0 +1,24 @@
+.crop {
+    width: 100%;
+    height: 175px;
+    background-position: center;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    object-fit: cover;
+    /* fix the gap */
+    display: block;
+    margin-bottom: -14px;
+}
+
+.logo {
+    height: 140px;
+    display: block;
+    margin-top: -203px;
+    position: relative;
+    top: 45px;
+    left: 10px;
+    /* margin-bottom: -14px; */
+}
+
+#header .item{
+    color: white
+}

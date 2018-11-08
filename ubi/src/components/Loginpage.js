@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 import '../css/form.css';
 
 class Loginpage extends Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = "#DADADA";
+  }
+  
   submit = data => {
     // console.log(data);
     this.props.login(data).then(() => this.props.history.push("/"));
@@ -15,7 +19,7 @@ class Loginpage extends Component {
 
   render(){
     return (
-      <div class="ui middle aligned center aligned grid">
+      <div class="ui middle aligned center aligned grid" id="auth">
         <div class="column">
           <h1>Login</h1>
           <Loginform submit={this.submit}></Loginform>

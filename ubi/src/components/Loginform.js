@@ -56,7 +56,9 @@ class Loginform extends Component {
             </div>
             {errors.password && <InlineError text={errors.password}/>}
           </Form.Field>
-          <Button primary>Login</Button>
+          {/* <Button primary>Login</Button> */}
+          <br></br>
+          <button class="fluid medium ui primary button">Login</button>
         </div>
       </Form>
     )
