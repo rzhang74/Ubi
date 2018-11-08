@@ -1,0 +1,2 @@
+For windows bash users, if u get ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock', 
+and sudo service mysql start doesn't work. Try type services in windows search and find mysql and manually turn it off. Then run that code will work.
