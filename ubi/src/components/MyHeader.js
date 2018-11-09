@@ -6,7 +6,7 @@ import '../css/imageheader.css';
 class MyHeader extends Component {
   render() {
     return (
-      <div>
+      <div id="header">
         <div>
           <img class='crop' src= {process.env.PUBLIC_URL+"/image_headers/header1.png"} alt=""></img>
           <div class="ui container">
@@ -15,7 +15,7 @@ class MyHeader extends Component {
             </Link>
           </div>
         </div>
-        <div class="ui borderless menu" id="header">
+        <div class="ui borderless menu" id="textheader">
           <div className="ui container">
             <div class="item"><Link to="/" style={{color:"white",width:"100%", height:"100%"}}>Home</Link></div>
             <a class="item">Anime</a>

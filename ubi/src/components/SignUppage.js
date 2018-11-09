@@ -5,9 +5,7 @@ import SignUpform from './SignUpform';
 import '../css/form.css';
 
 class SignUppage extends Component {
-  componentDidMount() {
-    document.body.style.backgroundColor = "#DADADA";
-  }
+
   submit = data => {
     // console.log(data);
     this.props.signup(data).then(() => this.props.history.push("/"));

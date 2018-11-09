@@ -29,7 +29,7 @@ class Loginform extends Component {
   validate = (data) => {
     const errors = {};
     if(!Validator.isEmail(data.email)) errors.email = "Invalid email, qwq.";
-    if(!data.password) errors.password = "Didn't you type your password, meow?";
+    if(!data.password) errors.password = "Did you type your password, meow?";
     return errors;
   };
 
@@ -58,7 +58,7 @@ class Loginform extends Component {
           </Form.Field>
           {/* <Button primary>Login</Button> */}
           <br></br>
-          <button class="fluid medium ui primary button">Login</button>
+          <button class="fluid medium ui green button">Login</button>
         </div>
       </Form>
     )

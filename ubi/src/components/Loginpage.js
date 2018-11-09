@@ -8,9 +8,6 @@ import { Link } from 'react-router-dom';
 import '../css/form.css';
 
 class Loginpage extends Component {
-  componentDidMount() {
-    document.body.style.backgroundColor = "#DADADA";
-  }
   
   submit = data => {
     // console.log(data);

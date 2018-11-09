@@ -31,7 +31,7 @@ class SignUpform extends Component {
     const errors = {};
     if(!data.username) errors.username = "Can't be blank, meow.";
     if(!Validator.isEmail(data.email)) errors.email = "Invalid email, qwq.";
-    if(!data.password) errors.password = "Didn't you type your password, meow?";
+    if(!data.password) errors.password = "Did you type your password, meow?";
     return errors;
   };
 
@@ -72,7 +72,7 @@ class SignUpform extends Component {
               
               {/* <Button primary>Sign Up</Button> */}
               <br></br>
-              <button class="fluid medium ui primary button">Sign up</button>
+              <button class="fluid medium ui green button">Sign up</button>
             </div>
           </Form>
         

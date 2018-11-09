@@ -19,6 +19,10 @@
     /* margin-bottom: -14px; */
 }
 
-#header .item{
+#textheader .item{
     color: white
+}
+
+#header {
+    margin-bottom: 20px;
 }
