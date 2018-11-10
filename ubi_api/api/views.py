@@ -24,9 +24,12 @@ def index(request):
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def app_login(request):
+    print("hello")
     uname = request.data.get('email')
     passwd = request.data.get('password')
+    print("email: ", uname)
     user = authenticate(username=uname, password=passwd)
+    print("username: ", user.email)
     if user:
         login(request._request, user)  
     else:
@@ -34,8 +37,9 @@ def app_login(request):
     
     # generate token for client
     token, _ = Token.objects.get_or_create(user=user)
-    r = JsonResponse({"token": token.key}, status=status.HTTP_202_ACCEPTED)
-    # r.set_cookie(key="token", value=token.key)
+    r = JsonResponse({"token": token.key, "username": user.email}, status=status.HTTP_202_ACCEPTED)
+    print(token.key)
+    r.set_cookie(key="token", value=token.key)
     return r
 
 @api_view(['POST'])
@@ -56,11 +60,12 @@ def app_register(request):
         return Response(status=status.HTTP_409_CONFLICT)
 
 @api_view(['POST'])
-# @permission_classes((IsAuthenticated,))
+@permission_classes((IsAuthenticated,))
 def app_logout(request):
+    print('hi')
     logout(request._request)
     request.user.auth_token.delete()
     r = Response() 
-    # r.delete_cookie('token')
+    r.delete_cookie('token')
     r.status_code = status.HTTP_200_OK
     return r
