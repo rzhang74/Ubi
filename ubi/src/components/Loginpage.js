@@ -9,10 +9,10 @@ import '../css/form.css';
 
 class Loginpage extends Component {
   
-  submit = data => {
+  submit = data => 
     // console.log(data);
     this.props.login(data).then(() => this.props.history.push("/"));
-  };
+  
 
   render(){
     return (
@@ -35,7 +35,8 @@ class Loginpage extends Component {
 Loginpage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  login: PropTypes.func.isRequired
 }
 
 export default connect(null, { login })(Loginpage);

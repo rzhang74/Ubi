@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+
 export default {
-    user: {
-        login: (credentials) => axios.post('/api/auth', { credentials }).then(res => res.data.user)
-    }
+  user: {
+    //url data header
+    login: (credentials) => axios.post('http://localhost:8000/api/login', credentials, {headers: {'Content-Type': 'application/json'}}).then(res => res.data),
+
+    signup: (credentials) => axios.post('http://localhost:8000/api/register', credentials, {headers: {'Content-Type': 'application/json'}}).then(res => true),
+
+    logout: (token) => axios.post('http://localhost:8000/api/logout', {}, {headers: {'Content-Type': 'application/json', 'Authorization': 'Token ' + token}})
+    
+  }
 }

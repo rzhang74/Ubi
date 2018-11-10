@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 import Validator from 'validator';
 import InlineError from './InlineError';
 
@@ -22,7 +22,10 @@ class Loginform extends Component {
     const errors = this.validate(this.state.data);
     this.setState({errors})
     if(Object.keys(errors).length === 0){
-      this.props.submit(this.state.data);
+      this.props.submit(this.state.data)
+      .catch(err => this.setState({ 
+        errors: {...this.state.errors, ["global"] : err.message} 
+      }));
     }
   };
 
@@ -39,6 +42,11 @@ class Loginform extends Component {
 
     return (
       <Form class="ui large form" onSubmit={this.onSubmit}>
+        {errors.global && 
+        <Message negative>
+          <Message.Header>Whoops owo, something went wrong</Message.Header>
+          <p>{errors.global}</p>
+        </Message>}
         <div class="ui stacked segment">
           <Form.Field error={!!errors.email}>
             <label htmlFor="email">Email</label>

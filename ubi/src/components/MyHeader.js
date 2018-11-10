@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Search } from 'semantic-ui-react';
 import '../css/imageheader.css';
+import { connect } from 'react-redux';
+import { logout } from "../actions/auth";
+import PropTypes from 'prop-types';
 
 class MyHeader extends Component {
+  onClick = () => {
+    this.props.logout(this.props.user.token);
+  }
+  
   render() {
     return (
       <div id="header">
@@ -31,8 +38,8 @@ class MyHeader extends Component {
                 </div>
               </div>
               <div class="item"><Link to="/signup" style={{color:"white"}}>Sign Up</Link></div>
-              <div class="item"><Link to="/login" style={{color:"white"}}>Login</Link></div>
-              {/* <a class="item">Login<Link to="/login">Login</Link></a> */}
+              {!this.props.user.logged_in && <div class="item"><Link to="/login" style={{color:"white"}}>Login</Link></div>}
+              {this.props.user.logged_in && <div class="item" onClick={this.onClick}><Link to="/" style={{color:"white"}}>Logout</Link></div>}
             </div>
           </div>
         </div>
@@ -41,4 +48,15 @@ class MyHeader extends Component {
   }
 }
 
-export default MyHeader;
+MyHeader.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  logout: PropTypes.func.isRequired
+}
+
+const mapStateToProps = State => ({
+  user: State.user
+});
+
+export default connect(mapStateToProps, {logout})(MyHeader);

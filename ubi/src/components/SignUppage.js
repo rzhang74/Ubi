@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import SignUpform from './SignUpform';
+import { signup } from "../actions/auth";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import '../css/form.css';
 
 class SignUppage extends Component {
 
-  submit = data => {
+  submit = data => 
     // console.log(data);
-    this.props.signup(data).then(() => this.props.history.push("/"));
-  };
+    this.props.signup(data).then(() => this.props.history.push("/login"));
+  
 
   render() {
     return (
@@ -28,4 +31,11 @@ class SignUppage extends Component {
   }
 }
 
-export default SignUppage;
+SignUppage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  signup: PropTypes.func.isRequired
+}
+
+export default connect(null, { signup })(SignUppage);
