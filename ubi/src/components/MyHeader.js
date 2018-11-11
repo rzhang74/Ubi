@@ -15,31 +15,32 @@ class MyHeader extends Component {
     return (
       <div id="header">
         <div>
-          <img class='crop' src= {process.env.PUBLIC_URL+"/image_headers/header1.png"} alt=""></img>
-          <div class="ui container">
+          <img className='crop' id="headerimg" src= {process.env.PUBLIC_URL+"/image_headers/header1.png"} alt=""></img>
+          <div className="ui container">
             <Link to="/" style={{color:"white",width:"100%", height:"100%"}}>
-              <img class='logo' src= {process.env.PUBLIC_URL+"logo4.png"} alt=""/>
+              <img className='logo' id="headerimg"src= {process.env.PUBLIC_URL+"logo4.png"} alt=""/>
             </Link>
           </div>
         </div>
-        <div class="ui borderless menu" id="textheader">
+        <div className="ui borderless menu" id="textheader">
           <div className="ui container">
-            <div class="item"><Link to="/" style={{color:"white",width:"100%", height:"100%"}}>Home</Link></div>
-            <a class="item">Anime</a>
-            <a class="item">Gaming</a>
-            <a class="item">Music</a>
-            <a class="item">Dancing</a>
-            <a class="item">Movies</a>
-            <div class="right menu">
-              <div class="item">
-                <div class="ui icon input">
+            <div className="item"><Link to="/" style={{color:"white",width:"100%", height:"100%"}}>Home</Link></div>
+            <a className="item">Anime</a>
+            <a className="item">Gaming</a>
+            <a className="item">Music</a>
+            <a className="item">Dancing</a>
+            <a className="item">Movies</a>
+            <div className="right menu">
+              <div className="item">
+                <div className="ui icon input">
                   <input type="text" placeholder="Search..."/>
-                  <i class="search link icon"></i>
+                  <i className="search link icon"></i>
                 </div>
               </div>
-              <div class="item"><Link to="/signup" style={{color:"white"}}>Sign Up</Link></div>
-              {!this.props.user.logged_in && <div class="item"><Link to="/login" style={{color:"white"}}>Login</Link></div>}
-              {this.props.user.logged_in && <div class="item" onClick={this.onClick}><Link to="/" style={{color:"white"}}>Logout</Link></div>}
+              {!this.props.user.logged_in && <div className="item"><Link to="/signup" style={{color:"white"}}>Sign Up</Link></div>}
+              {this.props.user.logged_in && <div className="item"><Link to="/profile" style={{color:"white"}}>Profile</Link></div>}
+              {!this.props.user.logged_in && <div className="item"><Link to="/login" style={{color:"white"}}>Login</Link></div>}
+              {this.props.user.logged_in && <div className="item" onClick={this.onClick}><Link to="/" style={{color:"white"}}>Logout</Link></div>}
             </div>
           </div>
         </div>
@@ -49,9 +50,6 @@ class MyHeader extends Component {
 }
 
 MyHeader.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
   logout: PropTypes.func.isRequired
 }
 

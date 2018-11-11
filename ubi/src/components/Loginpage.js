@@ -16,13 +16,13 @@ class Loginpage extends Component {
 
   render(){
     return (
-      <div class="ui middle aligned center aligned grid" id="auth">
-        <div class="column">
+      <div className="ui middle aligned center aligned grid" id="auth">
+        <div className="column" id="form">
           <h1>Login</h1>
           <Loginform submit={this.submit}></Loginform>
 
           <br></br>
-          <div class="ui message">
+          <div className="ui message">
             New to us?  <Link to="/signup">Register</Link>
           </div>
         </div>

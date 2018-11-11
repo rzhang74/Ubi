@@ -44,12 +44,12 @@ class SignUpform extends Component {
 
     return (
       <div>
-          <Form class="ui large form" onSubmit={this.onSubmit}>
-            <div class="ui stacked segment">
+          <Form className="ui large form" onSubmit={this.onSubmit}>
+            <div className="ui stacked segment">
               <Form.Field error={!!errors.username}>
                 <label htmlFor="username">Username</label>
-                <div class="ui left icon input">
-                  <i class="user icon"></i>
+                <div className="ui left icon input">
+                  <i className="user icon"></i>
                   <input id="username" name="username" placeholder="Whatevery name u want :)" value={data.username} onChange={this.onChange}></input>
                 </div>
                 {errors.username && <InlineError text={errors.username}/>}
@@ -57,8 +57,8 @@ class SignUpform extends Component {
 
               <Form.Field error={!!errors.email}>
                 <label htmlFor="email">Email</label>
-                <div class="ui left icon input">
-                  <i class="envelope icon"></i>
+                <div className="ui left icon input">
+                  <i className="envelope icon"></i>
                   <input type="email" id="email" name="email" placeholder="example@example.com" value={data.email} onChange={this.onChange}></input>
                 </div>
                 {errors.email && <InlineError text={errors.email}/>}
@@ -66,8 +66,8 @@ class SignUpform extends Component {
 
               <Form.Field error={!!errors.password}>
                 <label htmlFor="password">Password</label>
-                <div class="ui left icon input">
-                  <i class="lock icon"></i>
+                <div className="ui left icon input">
+                  <i className="lock icon"></i>
                   <input type="password" id="password" name="password" placeholder="Make it secure :)" value={data.password} onChange={this.onChange}></input>
                 </div>
                 {errors.password && <InlineError text={errors.password}/>}
@@ -75,7 +75,7 @@ class SignUpform extends Component {
               
               {/* <Button primary>Sign Up</Button> */}
               <br></br>
-              <button class="fluid medium ui green button">Sign up</button>
+              <button className="fluid medium ui green button">Sign up</button>
             </div>
           </Form>
         

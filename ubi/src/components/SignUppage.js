@@ -16,13 +16,13 @@ class SignUppage extends Component {
 
   render() {
     return (
-      <div class="ui middle aligned center aligned grid" id="auth">
-        <div class="column">
+      <div className="ui middle aligned center aligned grid" id="auth">
+        <div className="column" id="form">
           <h1>Sign Up</h1>
           <SignUpform submit={this.submit}></SignUpform>
 
           <br></br>
-          <div class="ui message">
+          <div className="ui message">
             Already registered?  <Link to="/login">Login</Link>
           </div>
         </div>
