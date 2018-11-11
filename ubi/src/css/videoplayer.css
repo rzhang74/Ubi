@@ -1,3 +1,20 @@
 #videoContainer {
-    width: 720px;
+    width: 1080px;
+}
+
+/* This is actually for the profile and home page, but I am too lazy. Peace. */
+.ui.card>.extra, .ui.cards>.card>.extra{ /*no padding extra*/
+    border-top: 0px !important;
+    padding: 0 0 !important;
+}
+
+.ui.card>.content, .ui.cards>.card>.content { /*no padding content*/
+    padding: 0 0 !important;
+}
+
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
+    margin-top: 0 !important;
+    font-size: 1em !important;
+    margin-bottom: -0.1em !important;
+
 }

@@ -27,9 +27,7 @@ def app_login(request):
     print("hello")
     uname = request.data.get('email')
     passwd = request.data.get('password')
-    print("email: ", uname)
     user = authenticate(username=uname, password=passwd)
-    print("username: ", user.email)
     if user:
         login(request._request, user)  
     else:
