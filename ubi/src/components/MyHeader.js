@@ -7,10 +7,12 @@ import { logout } from "../actions/auth";
 import PropTypes from 'prop-types';
 
 class MyHeader extends Component {
+  //logout button clicked action
   onClick = () => {
     this.props.logout(this.props.user.token);
   }
   
+  //header renderer
   render() {
     return (
       <div id="header">

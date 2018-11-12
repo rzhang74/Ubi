@@ -9,9 +9,12 @@ const src = process.env.PUBLIC_URL+'/video.jpg'
 
 class Profilepage extends Component {
   state = { activeItem: 'Home' }
+  // active item handler
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  // sticky to the top handler
   handleContextRef = contextRef => this.setState({ contextRef })
 
+  //profile page renderer
   render() {
     const { activeItem } = this.state
     const { contextRef } = this.state

@@ -13,7 +13,7 @@ class Loginpage extends Component {
     // console.log(data);
     this.props.login(data).then(() => this.props.history.push("/"));
   
-
+  // login page renderer
   render(){
     return (
       <div className="ui middle aligned center aligned grid" id="auth">

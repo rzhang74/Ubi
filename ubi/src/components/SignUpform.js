@@ -14,11 +14,13 @@ class SignUpform extends Component {
     errors: {}
   }
 
+  //form placeholder type in handler
   onChange = e => 
     this.setState({
       data: {...this.state.data, [e.target.name] : e.target.value}
     });
 
+  //sign up form submit button clicked
   onSubmit = () => {
     const errors = this.validate(this.state.data);
     this.setState({errors})
@@ -30,6 +32,7 @@ class SignUpform extends Component {
     }
   };
 
+  //sign up form validator
   validate = (data) => {
     const errors = {};
     if(!data.username) errors.username = "Can't be blank, meow.";
@@ -38,10 +41,11 @@ class SignUpform extends Component {
     return errors;
   };
 
+  //sign up form renderer
   render() {
     const { data } = this.state;
     const { errors } = this.state;
-
+    
     return (
       <div>
           <Form className="ui large form" onSubmit={this.onSubmit}>

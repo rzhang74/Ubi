@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 class InlineError extends Component {
+  //inline error renderer if there is error in the form
   render() {
     return (
       <div>

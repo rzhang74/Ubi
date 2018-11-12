@@ -7,6 +7,7 @@ import { Player, ControlBar, ReplayControl,
 import { Button, Comment, Form, Container, Header, Divider, Image, TextArea, Segment} from 'semantic-ui-react';
 
 class Videopage extends Component {
+  //video and comment renderer
   render() {
     return (
       <div>

@@ -9,11 +9,12 @@ import '../css/form.css';
 
 class SignUppage extends Component {
 
+  //signup button clicked action
   submit = data => 
     // console.log(data);
     this.props.signup(data).then(() => this.props.history.push("/login"));
   
-
+  //sign up page renderer
   render() {
     return (
       <div className="ui middle aligned center aligned grid" id="auth">

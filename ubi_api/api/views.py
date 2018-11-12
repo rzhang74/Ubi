@@ -21,6 +21,7 @@ from datetime import date, datetime
 def index(request):
     return HttpResponse("Hello and Farewell :)")
 
+# login request handler
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def app_login(request):
@@ -40,6 +41,7 @@ def app_login(request):
     r.set_cookie(key="token", value=token.key)
     return r
 
+# signup request handler
 @api_view(['POST'])
 @parser_classes((JSONParser,))
 def app_register(request):
@@ -57,6 +59,7 @@ def app_register(request):
     except IntegrityError:
         return Response(status=status.HTTP_409_CONFLICT)
 
+# logout request handler
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
 def app_logout(request):

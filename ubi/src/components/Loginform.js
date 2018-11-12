@@ -13,11 +13,13 @@ class Loginform extends Component {
     errors: {}
   }
 
+  // type in placeholder clicked action
   onChange = e => 
     this.setState({
       data: {...this.state.data, [e.target.name] : e.target.value}
     });
 
+  // form submit button clicked action
   onSubmit = () => {
     const errors = this.validate(this.state.data);
     this.setState({errors})
@@ -26,6 +28,7 @@ class Loginform extends Component {
     }
   };
 
+  // form error validator
   validate = (data) => {
     const errors = {};
     if(!Validator.isEmail(data.email)) errors.email = "Invalid email, qwq.";
@@ -33,6 +36,7 @@ class Loginform extends Component {
     return errors;
   };
 
+  // login form renderer
   render() {
     const { data } = this.state;
     const { errors } = this.state;

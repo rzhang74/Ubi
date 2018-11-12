@@ -8,6 +8,7 @@ class Homepage extends Component {
     document.body.style.backgroundColor = "white";
   }
 
+  // Homepage Renderer
   render(){
     return (
       <div>
@@ -16,8 +17,7 @@ class Homepage extends Component {
         <br></br>
         <Link to="/profile">profile</Link>
 
-        <br></br>
-        
+        <br></br> 
       </div>
     );
   }
