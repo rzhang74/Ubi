@@ -6,6 +6,11 @@ import SignUppage from './components/SignUppage';
 import Profilepage from './components/Profilepage';
 import Videopage from './components/Videopage';
 import MyHeader from './components/MyHeader';
+import Animepage from './components/Animepage';
+import Gamingpage from './components/Gamingpage';
+import Musicpage from './components/Musicpage';
+import Dancingpage from './components/Dancingpage';
+import Moviespage from './components/Moviespage';
 
 class App extends Component {
   render() {
@@ -17,7 +22,12 @@ class App extends Component {
           <Route path = "/login" exact component={Loginpage} />
           <Route path = "/signup" exact component={SignUppage} />
           <Route path = "/profile" exact component={Profilepage} />
-          <Route path = "/video" exact component={Videopage} />
+          <Route path = "/videos/:vid" exact component={Videopage} />
+          <Route path = "/anime" exact component={Animepage} />
+          <Route path = "/gaming" exact component={Gamingpage} />
+          <Route path = "/music" exact component={Musicpage} />
+          <Route path = "/dancing" exact component={Dancingpage} />
+          <Route path = "/movies" exact component={Moviespage} />
         </div>
       </div>
     );

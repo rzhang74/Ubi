@@ -11,6 +11,7 @@ class Video(models.Model):
     vid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=300)
+    thumbnail_address = models.CharField(max_length=300, default='/video.jpg')
     description = models.TextField(null=True)
     category = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_column="user")

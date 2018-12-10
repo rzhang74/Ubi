@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Grid, Menu, Segment, Image, Rail, Header, Sticky, Card, Icon} from 'semantic-ui-react'
 import _ from 'lodash'
 import { connect } from 'react-redux';
+import UploadForm from './UploadForm';
+import Followingpage from './Followingpage';
+import Followerpage from './Followerpage';
+import PersonalVideoPage from './PersonalVideoPage';
+import CommunityPage from './CommunityPage';
 
 const Placeholder = () => <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
 
@@ -14,10 +19,18 @@ class Profilepage extends Component {
   // sticky to the top handler
   handleContextRef = contextRef => this.setState({ contextRef })
 
+  routeTo(){
+    window.open('http://www.google.com'); //This will open Google in a new 
+  }
+
+
   //profile page renderer
   render() {
     const { activeItem } = this.state
     const { contextRef } = this.state
+
+    console.log(this.props.uid)
+    console.log(this.props.username)
 
     return (
       <Grid>
@@ -26,162 +39,20 @@ class Profilepage extends Component {
         <Grid.Column width={13}>
           <div ref={this.handleContextRef}>
             <Segment>
-              {!(activeItem === 'Videos') && _.times(10, i => <Placeholder key={i} />)}
-              { (activeItem === 'Videos') &&
-              <Card.Group itemsPerRow={4}>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-                <Card style={{"boxShadow":"0 0 0 0"}}>
-                  <Image src= {src} />
-                  <Card.Content>
-                    <Card.Header>Video Names that are, usually, in most cases, two lines long</Card.Header>
-                    <Card.Meta>
-                      <span className='date'>who</span>
-                    </Card.Meta>
-                  </Card.Content>
-                  <Card.Content extra id='fuckthis'>
-                    <a>
-                      <Icon name='youtube play' />
-                      22 
-                    </a>
-                  </Card.Content>
-                </Card>
-              </Card.Group>
               
-              }
+              {/* {!(activeItem === 'Videos' || ) && _.times(10, i => <Placeholder key={i} />)} */}
+              
+              { (activeItem === 'Home') && _.times(10, i => <Placeholder key={i} />)}
+
+              { (activeItem === 'Community') && <CommunityPage></CommunityPage>}
+
+              { (activeItem === 'Following') && <Followingpage></Followingpage>}
+
+              { (activeItem === 'Followers') && <Followerpage></Followerpage>}
+
+              { (activeItem === 'Upload Video') && <UploadForm></UploadForm>}
+              
+              { (activeItem === 'Videos') && <PersonalVideoPage uid={this.props.uid} history={this.props.history}></PersonalVideoPage>}
             </Segment>
 
             {/* left header */}
@@ -211,7 +82,8 @@ class Profilepage extends Component {
 }
 
 const mapStateToProps = State => ({
-  username: State.user.username
+  username: State.user.username,
+  uid: State.user.uid
 });
 
 export default connect(mapStateToProps, {})(Profilepage);

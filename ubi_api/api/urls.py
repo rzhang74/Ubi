@@ -13,9 +13,14 @@ urlpatterns = [
     path('unfollow_by_id', views.unfollow_by_id),
     path('follow_by_email', views.follow_by_email),
     path('unfollow_by_email', views.unfollow_by_email),
+    path('get_following', views.get_following),
+    path('get_follower', views.get_follower),
     path('upload_video', views.upload_video),
     path('get_video_by_id', views.get_video_by_id),
     path('get_videos_by_user_email', views.get_videos_by_user_email),
+    path('get_videos', views.get_videos),
+    path('get_videos_all', views.get_videos_all),
+    path('get_videos_by_user_id',views.get_videos_by_user_id),
     path('like_video', views.like_video),
     path('like_video_cancel', views.like_video_cancel),
     path('dislike_video', views.dislike_video),
@@ -23,5 +28,6 @@ urlpatterns = [
     path('add_comment', views.add_comment),
     path('get_comments', views.get_comments),
     path('get_messages_by_user_id', views.get_messages_by_user_id),
-    path('add_message', views.add_message)
+    path('add_message', views.add_message),
+    path('recieve_thumbnail', views.recieve_thumbnail)
 ]

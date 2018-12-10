@@ -97,7 +97,7 @@ class myTest(TestCase):
         r = requests.post(base + 'login', data=json.dumps(payload), headers=header)
         token = r.json()['token']
 
-        header['Authorization'] = 'Token ' + token
+            
         payload = {'name': 'video1', 'description':'1', 'address':'1', 'category':'1'}
         r = requests.post(base + 'upload_video', data=json.dumps(payload), headers = header)
         self.assertEqual(r.status_code,201)

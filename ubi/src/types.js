@@ -1,3 +1,17 @@
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const USER_SIGNED_UP = "USER_SIGNED_UP";
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
+export const GET_MUSIC = "GET_MUSIC";
+export const GET_ANIME = "GET_ANIME";
+export const GET_GAMING = "GET_GAMING";
+export const GET_DANCING = "GET_DANCING";
+export const GET_MOVIES = "GET_MOVIES";
+export const WATCH_VIDEO = "WATCH_VIDEO";
+export const GET_FOLLOWING = "GET_FOLLOWING";
+export const GET_FOLLOWER = "GET_FOLLOWER";
+export const FOLLOW = "FOLLOW";
+export const UNFOLLOW = "UNFOLLOW";
+export const GET_VIDEOS = "GET_VIDEOS";
+export const GET_PERSONAL_VIDEOS = "GET_PERSONAL_VIDEOS";
+export const GET_COMMENT = "GET_COMMENT";
+export const GET_FEED = "GET_FEED";

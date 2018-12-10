@@ -9,11 +9,13 @@ class UserSerializer(serializers.ModelSerializer):
     fields = ('id', 'username', 'email', 'date_joined')
 
 class VideoSerializer(serializers.ModelSerializer):
+  user = UserSerializer(serializers.ModelSerializer, required=True)
   class Meta:
     model = Video
-    fields = ('vid', 'name', 'address', 'description', 'category', 'user')
+    fields = ('vid', 'name', 'address', 'thumbnail_address', 'description', 'category', 'user')
 
 class CommentSerializer(serializers.ModelSerializer):
+  user = UserSerializer(serializers.ModelSerializer, required=True)
   class Meta:
     model = Comment
     fields = ('cid', 'user', 'content', 'parent')

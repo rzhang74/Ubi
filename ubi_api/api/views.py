@@ -17,6 +17,9 @@ from rest_framework.decorators import api_view, parser_classes, permission_class
 from django.forms.models import model_to_dict
 from datetime import date, datetime
 
+from .form import UploadFileForm
+from ubi_api.settings import BASE_DIR
+
 # Create your views here.
 def index(request):
     return HttpResponse("Hello and Farewell :)")
@@ -38,7 +41,7 @@ def app_login(request):
     
     # generate token for client
     token, _ = Token.objects.get_or_create(user=user)
-    r = JsonResponse({"token": token.key, "username": user.email}, status=status.HTTP_200_OK)
+    r = JsonResponse({"token": token.key, "username": user.email, "id":user.id}, status=status.HTTP_200_OK)
     print(token.key)
     r.set_cookie(key="token", value=token.key)
     return r
@@ -119,7 +122,7 @@ def follow_by_id(request):
             f.save()
             return Response(status=status.HTTP_201_CREATED)
         except IntegrityError:
-            return Response(status=status.HTTP_409_CONFICT)
+            return Response(status=status.HTTP_409_CONFLICT)
     else:
             print('here')
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -157,7 +160,7 @@ def unfollow_by_id(request):
                 f.delete()
                 return Response(status=status.HTTP_200_OK)
             except IntegrityError:
-                return Response(status=status.HTTP_409_CONFICT)
+                return Response(status=status.HTTP_409_CONFLICT)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
     else:
@@ -184,6 +187,25 @@ def unfollow_by_email(request):
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def get_following(request):
+    u = request._request.user
+    users = Follow.objects.filter(follower=u)
+    ret = []
+    for user in users:
+        ret.append(UserSerializer(user.user).data)
+    return JsonResponse(ret, safe=False)
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+def get_follower(request):
+    u = request._request.user
+    users = Follow.objects.filter(user=u)
+    ret = []
+    for user in users:
+        ret.append(UserSerializer(user.follower).data)
+    return JsonResponse(ret, safe=False)
 ## ------------------------------- Video Related --------------------------
 # get a video, create a video, like, dislike, add tags
 @api_view(['POST'])
@@ -192,17 +214,36 @@ def upload_video(request):
     u = request._request.user
     name = request.data.get('name')
     address = request.data.get('address')
+    thumbnail_address = request.data.get('thumbnail_address')
     description = request.data.get('description')
     category = request.data.get('category')
     try:
-        video = Video(name=name,address=address,description=description,category=category,user=u)
+        video = Video(name=name,address=address,thumbnail_address=thumbnail_address,description=description,category=category,user=u)
         video.save()
         return Response(status=status.HTTP_201_CREATED)
     except IntegrityError:
         return Response(status=status.HTTP_409_CONFLICT)
 
+def handle_uploaded_file(f):
+    with open(BASE_DIR + '/test.jpg', 'wb+') as destination:
+        print(BASE_DIR)
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+@api_view(['POST'])
+def recieve_thumbnail(request):
+    print(request.POST)
+    print(request.FILES)
+    form = UploadFileForm(request.POST, request.FILES)
+    # print(form)
+    print(form.errors)
+    print(form.non_field_errors)
+    if form.is_valid():
+        handle_uploaded_file(request.FILES['file'])
+        return Response(status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_409_CONFLICT)
+
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def get_video_by_id(request):
     vid = request.query_params.get('vid')
     videos = Video.objects.filter(vid=vid)
@@ -214,7 +255,6 @@ def get_video_by_id(request):
         return JsonResponse({}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
 def get_videos_by_user_email(request):
     username = request.query_params.get('username')
     print(username)
@@ -228,6 +268,38 @@ def get_videos_by_user_email(request):
         return JsonResponse(ret, safe=False)
     else:
         return JsonResponse({}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def get_videos_by_user_id(request):
+    uid = request.query_params.get('uid')
+    print(uid)
+    users = User.objects.filter(id=uid)
+    if(len(users)>0):
+        user = users[0]
+        videos = Video.objects.filter(user=user)
+        ret = []
+        for video in videos:
+            ret.append(VideoSerializer(video).data)
+        return JsonResponse(ret, safe=False)
+    else:
+        return JsonResponse({}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def get_videos(request):
+    category = request.query_params.get('category')
+    videos = Video.objects.filter(category=category)
+    ret = []
+    for video in videos:
+        ret.append(VideoSerializer(video).data)
+    return JsonResponse(ret, safe=False)
+    
+@api_view(['GET'])
+def get_videos_all(request):
+    videos = Video.objects.all()
+    ret = []
+    for video in videos:
+        ret.append(VideoSerializer(video).data)
+    return JsonResponse(ret, safe=False)
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))    
@@ -320,10 +392,12 @@ def get_comments(request):
 ## ------------------------------- Community Related --------------------------
 # add message, get message
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def get_messages_by_user_id(request):
-    uid = request.query_params.get('uid')
-    users = User.objects.filter(id=uid)
-    user = users[0]
+    # uid = request.query_params.get('uid')
+    # users = User.objects.filter(id=uid)
+    # user = users[0]
+    user = request._request.user
     messages = CommunityMessage.objects.filter(user=user)
     ret = []
     for message in messages:

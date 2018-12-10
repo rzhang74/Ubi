@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { getVideos } from "../actions/get";
+import { getMusic } from "../actions/get";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {Image, Card, Icon} from 'semantic-ui-react'
 
-class Homepage extends Component {
-  componentDidMount() {
-    document.body.style.backgroundColor = "white";
-  }
-
+class Musicpage extends Component {
   componentWillMount(){
-    this.props.getVideos()
+    this.props.getMusic()
   }
 
   handleClick = (vid) => this.props.history.push("/videos/"+vid)
 
   render() {
-    var videos = this.props.videos;
+    var music = this.props.music;
 
     return (
       <div>
         <Card.Group itemsPerRow={5}>
-          {videos.map((m) => (
+          {music.map((m) => (
             // return (
               <Card id={m.vid} style={{"boxShadow":"0 0 0 0"}} onClick={() => this.handleClick(m.vid)}>
                 <Image style={{"height":"130px", "object-fit": "cover"}} src= {process.env.PUBLIC_URL+m.thumbnail_address} />
@@ -45,18 +40,17 @@ class Homepage extends Component {
       </div>
     )
   }
-  
 }
 
-Homepage.propTypes = {
+Musicpage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
-  getVideos: PropTypes.func.isRequired
+  getMusic: PropTypes.func.isRequired
 }
 
 const mapStateToProps = State => ({
-  videos: State.video.videos
+  music: State.video.music
 });
 
-export default connect(mapStateToProps, { getVideos })(Homepage);
+export default connect(mapStateToProps, { getMusic })(Musicpage);
